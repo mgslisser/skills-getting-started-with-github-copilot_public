@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <p><strong>Schedule:</strong> ${details.schedule}</p>
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
           <div class="participants-section">
-            <h5>Current Participants (${details.participants.length}/${details.max_participants})</h5>
+            <h5>Participants:</h5>
             <ul class="participants-list">
             </ul>
           </div>
