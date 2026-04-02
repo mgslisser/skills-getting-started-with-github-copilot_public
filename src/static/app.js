@@ -19,9 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
         activityCard.className = "activity-card";
 
         const spotsLeft = details.max_participants - details.participants.length;
-        const participantsList = details.participants
-          .map(email => `<li><span class="participant-email">${email}</span><button class="delete-btn" data-activity="${name}" data-email="${email}" title="Unregister">✕</button></li>`)
-          .join("");
 
         activityCard.innerHTML = `
           <h4>${name}</h4>
@@ -30,11 +27,16 @@ document.addEventListener("DOMContentLoaded", () => {
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
           <div class="participants-section">
             <h5>Current Participants (${details.participants.length}/${details.max_participants})</h5>
-            <ul class="participants-list">
-              ${participantsList}
+            <ul class="participants-list" id="participants">
             </ul>
           </div>
         `;
+
+        // Add participants using forEach
+        const participantsList = activityCard.querySelector("#participants");
+        details.participants.forEach(p => {
+          participantsList.innerHTML += `<li><span class="participant-email">${p}</span><button class="delete-btn" data-activity="${name}" data-email="${p}" title="Unregister">✕</button></li>`;
+        });
 
         activitiesList.appendChild(activityCard);
 
