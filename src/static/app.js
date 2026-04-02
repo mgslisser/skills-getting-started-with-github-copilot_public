@@ -27,15 +27,17 @@ document.addEventListener("DOMContentLoaded", () => {
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
           <div class="participants-section">
             <h5>Current Participants (${details.participants.length}/${details.max_participants})</h5>
-            <ul class="participants-list" id="participants">
+            <ul class="participants-list">
             </ul>
           </div>
         `;
 
         // Add participants using forEach
-        const participantsList = activityCard.querySelector("#participants");
-        details.participants.forEach(p => {
-          participantsList.innerHTML += `<li><span class="participant-email">${p}</span><button class="delete-btn" data-activity="${name}" data-email="${p}" title="Unregister">✕</button></li>`;
+        const participantsList = activityCard.querySelector(".participants-list");
+        details.participants.forEach(participant => {
+          const li = document.createElement("li");
+          li.innerHTML = `<span class="participant-email">${participant}</span><button class="delete-btn" data-activity="${name}" data-email="${participant}" title="Unregister">✕</button>`;
+          participantsList.appendChild(li);
         });
 
         activitiesList.appendChild(activityCard);
